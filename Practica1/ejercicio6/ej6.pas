@@ -105,7 +105,7 @@ begin
                 writeln (respuesta);
 
             end;
-
+            seek (arch, filepos(arch - 1));
             write (arch, lib);
             writeln ('Libro modificado!!!!');
       end;
