@@ -16,9 +16,9 @@ var
 Procedure DuplicarATexto (Var archivoInteger : archivo);
 Begin
     //Apertura del archivo de integer
-    writeln('Ingrese nombre del archivo de integer a procesar (del ejercicio 2)');
-    readln(nombreArchivo);
-    assign(archivoInteger,nombreArchivo);
+   // writeln('Ingrese nombre del archivo de integer a procesar (del ejercicio 2)');
+    //readln(nombreArchivo);
+    assign(archivoInteger,'C:\Users\VICTUS\Documents\2024\CBD\Practica1\ejercicio2\dolores');
     reset (archivoInteger); 
 
     //Creacion del archivo de texto
