@@ -49,7 +49,7 @@ procedure Minimo (var DetR: DetalleR; var DetA: DetalleA; var min: Detalle);
 var
     Pos: integer;
 begin
-  Pos:= A ;
+  Pos:= 1 ;
   min := DetR [pos];
   for (i:=o to nro_detalle) do begin
         if (min.codProv > DetR[i].codProv ) then begin
