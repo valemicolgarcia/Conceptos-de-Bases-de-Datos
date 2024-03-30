@@ -80,7 +80,7 @@ begin
           pos := i;
         end;
     end;
-    leer (archivos_detalle[i], calzadosDetalle[i]); //avanzo en el archivo detalle correspondiente al minimo
+    leer (archivos_detalle[pos], calzadosDetalle[pos]); //avanzo en el archivo detalle correspondiente al minimo
 end;
 
 //-----------------
