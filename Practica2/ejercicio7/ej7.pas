@@ -156,9 +156,9 @@ begin
         //PROCESO EL EMPLEADO MINIMO
         while (aux = min.codProd) do begin
             prod.stockActual := prod.stockActual - min.cantVendidas; //ACTUALIZO
-            
-
         end;
+            seek (archMaestro, filepos(archMaestro) - 1);
+            write (archMaestro, prod);
 
 
 
