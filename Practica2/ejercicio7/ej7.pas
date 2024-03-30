@@ -157,14 +157,11 @@ begin
         while (aux = min.codProd) do begin
             prod.stockActual := prod.stockActual - min.cantVendidas; //ACTUALIZO
         end;
-            seek (archMaestro, filepos(archMaestro) - 1);
-            write (archMaestro, prod);
 
-
+        seek (archMaestro, filepos(archMaestro) - 1);
+        write (archMaestro, prod);
 
     end;
-
-
 
     close (archMaestro);
     for i:=1 to N do begin
