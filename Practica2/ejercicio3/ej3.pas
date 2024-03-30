@@ -132,6 +132,8 @@ begin
                 writeln (archivoTexto, noticia);
                 close (archivoTexto);
             end;
+            seek (archMaestro, filepos(archMaestro) - 1);
+            write (archMaestro, calzadoMaestro);
 
         end;
 
