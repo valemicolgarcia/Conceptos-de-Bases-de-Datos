@@ -115,7 +115,7 @@ begin
         peliM.duracion = min.duracion;
 
         while (aux = min.cod) do begin
-            minimo (archivosDetalle, peliculas, min);
+            
             peliM.totalAsistentes := peliM.totalAsistentes + min.cantAsistentes;
             minimo (archivosDetalle, peliculas, min);
         end;
