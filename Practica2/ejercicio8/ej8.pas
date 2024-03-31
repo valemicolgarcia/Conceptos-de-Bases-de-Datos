@@ -90,6 +90,7 @@ var
     vectorDetalle : vector_detalle;
     min : zona;
     infoMaestro: info_maestro;
+    archTexto : text;
 
 begin
 
@@ -106,15 +107,31 @@ begin
     //se determina cual es la zona con menor codigo
     minimo (vectorArchivosDetalle, vectorDetalle, min);
 
+    // se procesan los archivos de detalle
     while (min.codZona <> valorAlto) do begin
         aux := min.codZona;
+        //guardo valores del archivo maestro
         infoMaestro.codZona = min.codZona;
         infoMaestro.nombreZona = min.nombreZona;
+        //informe por archivo de texto
+        writeln (archTexto, min.codZona, min.nombreZona);
+        writeln (archTexto,min.descripcion );
+
+        // se procesan los registros de una misma zona
         while (aux = min.codZona) do begin
             infoMaestro.cantMetros = infoMaestro.cantMetros + min.cantMetrosDia;
             minimo (vectorArchivosDetalle, vectorDetalle, min);
-          
         end;
+        //se guarda en el archivo maestro
+        write (archMaestro, infoMaestro);
+        //informe por archivo de texto
+        writeln (archTexto, infoMaestro.cantMetros); 
+    end;
+
+    //cierre de archivos
+    close (archMaestro);
+    for i:=1 to N do begin
+      close (vectorArchivosDetalle[i]);
     end;
 
 
