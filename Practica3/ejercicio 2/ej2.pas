@@ -54,7 +54,7 @@ var
 begin
     reset (arch);
     read (arch, sLibre); //leo la cabecera
-    val (sLibre,nLibre, cod); //convierte de string a number y se guarda en sLibre
+    val (sLibre,nLibre, cod); //convierte de string a number y se guarda en nLibre
 
     if (nLibre = -1) then begin
         seek (arch, FileSize(arch));
@@ -94,7 +94,7 @@ begin
 
         nLibre := filepos(arch) - 1; //me guardo la posicion a eliminar
         seek (arch, nLibre); // me posiciono en el registro a eliminar
-        
+
         write (arch, sLibre) ; // grabamos el contenido de la cabecera (sobreescribo el resgitro a eliminar)
 
         str (nLibre, sLibre); //convierto de number a string (transformo la posicion)
