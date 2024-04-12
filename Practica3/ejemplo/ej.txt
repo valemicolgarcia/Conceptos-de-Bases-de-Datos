@@ -1,0 +1,80 @@
+program ej;
+//ARCHIVO ADICIONAL
+
+procedure crear (var arch:tArchivo, var info: text );
+var
+    p: profesional;
+begin
+    reset (info);
+    rewrite (arch);
+
+    //NO ME TENGO QUE OLVIDAR DE CREAR LA CABECERA --> ahi me voy a ir fijando en lista invertida
+    p.dni := 0;
+    write (arch, p);
+    while (not (eof (info)))
+        readln (info, p.dni, p.sueldo, p.nombre);
+        readln (info, p.apellido,);
+        write (arch, p);
+    end;
+
+    close (arch);
+    close (info);
+end;
+
+
+procedure Agregar (var arch: tArchivo , p: profesional);
+var
+    aux: profesional;
+    cabecera: profesional;
+begin
+
+    reset(arch);
+    read (arch, cabecera);
+    if (cabecera <> 0) then begin
+        seek (arch, -1 * cabecera.dni); 
+
+    //si el dni esta negativo nos vamos a dar cuenta que el registro esta eliminado, lo marcamos
+
+        read (arch, aux);
+        seek (arch, 0);
+        write (arch, aux);
+        seek (arch, -cabecera.dni) // * (-1)
+    end else begin
+        seek (arch, filesize(arch));
+    end;
+
+    write (arch, p);
+    close (arch);
+
+end;
+
+
+procedure eliminar (var arch: tArchivo ; dni: integer; var bajas: text);
+var 
+    p: persona;
+    c: persona;
+begin
+    reset (arch);
+    reset (bajas);
+    p.dni := -1;
+    read (arch, c); //leo la cabecera
+    while (not (eof (arch)) and (p.dni <> dni)) do begin
+        read (arch);
+    end;
+
+    if (p.dni = dni) then begin
+        seek (arch, filepos(arch) - 1);
+        write (arch, c); //spbreescribimos con el contenido de la cabecera
+        c.dni:= (filepos(arch) - 1) * (-1); // a la cabecera le pongo el nombre para que p este limpio
+        seek (arch, 0);
+        write (arch, c); //pisamos la cabecera con el nuevo valor
+        //escribir en el archivo de texto en el mismo orden con el qe leemos
+        writeln (bajas, p.dni, p.sueldo, p.nombre);
+        writeln (bajas, p.apellido);
+    end else begin
+        writeln ('no fue encontrado');
+    end;
+
+    close (arch);
+    close (bajas);
+end.
